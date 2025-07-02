@@ -15,6 +15,7 @@ aoyamajia https://github.com/aoyamajia/firefox-theme
     --toolbar-field-background-color: #281e3a !important;
     --toolbar-field-focus-background-color: #4f3873 !important;
     --urlbarView-highlight-background: var(--toolbox-bgcolor) !important;
+    --sidebar-background-color: var(--toolbox-bgcolor) !important;
 
     /* context menus */
     menupopup,
