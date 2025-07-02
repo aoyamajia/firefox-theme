@@ -1,0 +1,63 @@
+/* 
+firefox theme
+aoyamajia https://github.com/aoyamajia/firefox-theme
+*/
+
+@-moz-document url(about:privatebrowsing){
+    .promo {
+        display: none !important;
+    }
+}
+
+.neterror .title h1[data-l10n-id="generic-title"] {
+    visibility: hidden;
+}
+
+.neterror .title h1[data-l10n-id="generic-title"]::before {
+    content: "Page could not be loaded.";
+    visibility: visible;
+    display: block;
+    position: absolute;
+}
+
+.neterror .title h1[data-l10n-id="dnsNotFound-title"] {
+    visibility: hidden;
+}
+
+.neterror .title h1[data-l10n-id="dnsNotFound-title"]::before {
+    content: "Address could not be found.";
+    visibility: visible;
+    display: block;
+    position: absolute;
+}
+
+/* @namespace url('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'); */
+
+@-moz-document url(about:newtab), url(about:home){
+    .section-empty-state {
+        border-style: dashed !important;
+    }
+
+    .empty-state-message {
+        display: none !important;
+    }
+
+    .empty-state::after {
+        content: "Nothing here yet.";
+        color: color-mix(in srgb, var(--newtab-text-primary-color) 40%, transparent);
+        display: block !important;
+    }
+
+    .card-outer.placeholder {
+        border: 1px dashed color-mix(in srgb, var(--newtab-text-primary-color) 20%, transparent);
+
+        .card {
+            box-shadow: none !important;
+        }
+    }
+
+    .layout-variant-a .ds-outer-wrapper-breakpoint-override main .body-wrapper,
+    .layout-variant-b .ds-outer-wrapper-breakpoint-override main .body-wrapper {
+        display: initial !important;
+    }
+}

@@ -1,0 +1,145 @@
+/* 
+firefox theme
+aoyamajia https://github.com/aoyamajia/firefox-theme
+*/
+
+:root {
+    --tab-selected-bgcolor: var(--toolbar-bgcolor) !important;
+}
+/* theme private windows */
+:root[privatebrowsingmode="temporary"] {
+    --urlbar-box-bgcolor: #4f3873 !important;
+    --toolbox-bgcolor: #281e3a !important;
+    --toolbox-bgcolor-inactive: #2d213f !important;
+    --toolbar-bgcolor: #3e2f57 !important;
+    --toolbar-field-background-color: #281e3a !important;
+    --toolbar-field-focus-background-color: #4f3873 !important;
+    --urlbarView-highlight-background: var(--toolbox-bgcolor) !important;
+
+    /* context menus */
+    menupopup,
+    panel:not(#autoscroller) {
+        color-scheme: light dark;
+        --panel-background: var(--toolbox-bgcolor) !important;
+        --panel-border-color: var(--toolbar-field-focus-background-color) !important;
+    }
+
+    menuitem:hover {
+        background-color: var(--toolbar-field-focus-background-color) !important;
+    }
+
+    menu:where([_moz-menuactive="true"]:not([disabled="true"])),
+    menuitem:where([_moz-menuactive="true"]:not([disabled="true"])) {
+        background-color: var(--toolbar-field-focus-background-color) !important;
+    }
+
+    /* always show the firefox view button */
+    #firefox-view-button, #menu-openFirefoxView
+    {
+        display: flex !important;
+    }
+
+    /* hide the private browsing indicator */
+    #private-browsing-indicator-with-label {
+        display: none !important;
+    }
+}
+
+
+#urlbar-input::-moz-selection {
+    background-color: #95525b !important;
+}
+
+
+@namespace url('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul');
+
+/* remove vertical line between normal tabs and Firefox View tab */
+:root:not([privatebrowsingmode]) :is(toolbarbutton, toolbarpaletteitem) ~ #tabbrowser-tabs {
+    border: unset !important;
+}
+
+/* lower opacity of unselected tabs */
+.tabbrowser-tab:not([selected], [multiselected]) .tab-content {
+    opacity: 64% !important;
+}
+
+/* set single tabs to be transparent */
+tab:not(:hover):only-of-type .tab-background {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* special case for when only one tab is open along with Firefox View */
+/* Firefox View is the tab[hidden] in this case */
+tabs:has(>arrowscrollbox>tab[hidden]) tab:is([selected],[multiselected]):is(:first-child):is(:nth-last-child(3)) .tab-background {
+    background-color: transparent !important;
+}
+
+/* set tabs to take up all available space */
+/* and increase the duration for tab opening animations */
+.tabbrowser-tab[fadein]:not([pinned]) {
+    max-width: 100% !important;
+    transition-duration: 100ms, 375ms !important;
+}
+
+/* change focus outline colours */
+/* url bar */
+#urlbar-container {
+    --toolbar-field-focus-border-color: #ffb3bb !important;
+}
+/* everywhere else (inputs, etc) */
+:root {
+    --focus-outline-color: ffb3bb !important;
+    --tabstrip-inner-border: 1px solid var(--toolbar-bgcolor) !important;
+    --toolbarbutton-icon-fill-attention: #ffb3bb !important;
+}
+
+/* hide close tab button unless tab is selected or hovered over */
+.tabbrowser-tab:only-of-type .tab-close-button,
+.tabbrowser-tab:first-child:has(+ .tabbrowser-tab[hidden]) .tab-close-button,
+.tabbrowser-tab:not(:hover) .tab-close-button {
+    visibility: hidden;
+}
+
+/* change 'tab loaded' gradient colour */
+.tab-loading-burst[bursting]::before {
+    fill: #ffb3bb !important;
+}
+
+/* animate tab closing (shrink and fade out) */
+.tabbrowser-tab:not([pinned], [fadein]) .tab-background {
+    visibility: visible !important;
+}
+
+.tabbrowser-tab:not([pinned], [fadein]) {
+    transition: max-width 120ms ease-out, min-width 120ms ease-out, opacity 100ms ease-out !important;
+    visibility: visible !important;
+    opacity: 0%;
+}
+
+.tab-content:not([fadein], [pinned]) .tab-icon-pending:not([fadein]),
+.tab-icon-image:not([fadein]),
+.tab-label:not([fadein]) {
+    visibility: visible !important;
+}
+
+.tab-label:not([fadein]) {
+    display: flex !important;
+}
+
+/* hide tab container indicator */
+.tab-context-line{ display:none }
+
+/* italicise and dim unloaded tab titles */
+tab[pending] label, tab[pending] .tab-icon-stack {
+    font-style: italic;
+    opacity: 42%;
+}
+
+/* hide new sidebar only when panel isn't open */
+#sidebar-main {
+    display: none !important;
+}
+#sidebar-main[sidebar-panel-open] {
+    display: flex !important;
+}
