@@ -46,12 +46,14 @@ aoyamajia https://github.com/aoyamajia/firefox-theme
     }
 }
 
-
+/* change selected text colour */
 #urlbar-input::-moz-selection {
     background-color: #95525b !important;
 }
 
 
+/* above css doesn't work when placed after this, */
+/* below css doesn't work without it */
 @namespace url('http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul');
 
 /* remove vertical line between normal tabs and Firefox View tab */
@@ -107,23 +109,20 @@ tabs:has(>arrowscrollbox>tab[hidden]) tab:is([selected],[multiselected]):is(:fir
     fill: #ffb3bb !important;
 }
 
-/* animate tab closing (shrink and fade out) */
+/* animate tab closing (shrink and fade out) and fix some animations resulting from wider tabs */
 .tabbrowser-tab:not([pinned], [fadein]) .tab-background {
     visibility: visible !important;
 }
-
 .tabbrowser-tab:not([pinned], [fadein]) {
     transition: max-width 120ms ease-out, min-width 120ms ease-out, opacity 100ms ease-out !important;
     visibility: visible !important;
     opacity: 0%;
 }
-
 .tab-content:not([fadein], [pinned]) .tab-icon-pending:not([fadein]),
 .tab-icon-image:not([fadein]),
 .tab-label:not([fadein]) {
     visibility: visible !important;
 }
-
 .tab-label:not([fadein]) {
     display: flex !important;
 }

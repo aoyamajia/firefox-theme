@@ -3,27 +3,26 @@ firefox theme
 aoyamajia https://github.com/aoyamajia/firefox-theme
 */
 
+/* there is no need to remind me that I'm using firefox */
 @-moz-document url(about:privatebrowsing){
-    .promo {
+    .logo-and-wordmark {
         display: none !important;
     }
 }
 
+/* replace or hide "friendly" errors */
 .neterror .title h1[data-l10n-id="generic-title"] {
     visibility: hidden;
 }
-
 .neterror .title h1[data-l10n-id="generic-title"]::before {
     content: "Page could not be loaded.";
     visibility: visible;
     display: block;
     position: absolute;
 }
-
 .neterror .title h1[data-l10n-id="dnsNotFound-title"] {
     visibility: hidden;
 }
-
 .neterror .title h1[data-l10n-id="dnsNotFound-title"]::before {
     content: "Address could not be found.";
     visibility: visible;
@@ -38,10 +37,10 @@ aoyamajia https://github.com/aoyamajia/firefox-theme
         border-style: dashed !important;
     }
 
+    /* replace "friendly" empty state message */
     .empty-state-message {
         display: none !important;
     }
-
     .empty-state::after {
         content: "Nothing here yet.";
         color: color-mix(in srgb, var(--newtab-text-primary-color) 40%, transparent);
