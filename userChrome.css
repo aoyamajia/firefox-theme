@@ -80,7 +80,7 @@ tabs:has(>arrowscrollbox>tab[hidden]) tab:is([selected],[multiselected]):is(:fir
 
 /* set tabs to take up all available space */
 /* and increase the duration for tab opening animations */
-.tabbrowser-tab[fadein]:not([pinned]) {
+arrowscrollbox > .tabbrowser-tab[fadein]:not([pinned]) {
     max-width: 100% !important;
     transition-duration: 100ms, 375ms !important;
 }
@@ -113,7 +113,8 @@ tabs:has(>arrowscrollbox>tab[hidden]) tab:is([selected],[multiselected]):is(:fir
 .tabbrowser-tab:not([pinned], [fadein]) .tab-background {
     visibility: visible !important;
 }
-.tabbrowser-tab:not([pinned], [fadein]) {
+
+arrowscrollbox > .tabbrowser-tab:not([pinned], [fadein]) {
     transition: max-width 120ms ease-out, min-width 120ms ease-out, opacity 100ms ease-out !important;
     visibility: visible !important;
     opacity: 0%;
