@@ -80,7 +80,7 @@ tabs:has(>arrowscrollbox>tab[hidden]) tab:is([selected],[multiselected]):is(:fir
 
 /* set tabs to take up all available space */
 /* and increase the duration for tab opening animations */
-arrowscrollbox > .tabbrowser-tab[fadein]:not([pinned]) {
+arrowscrollbox > .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
     max-width: 100% !important;
     transition-duration: 100ms, 375ms !important;
 }
