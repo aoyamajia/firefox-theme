@@ -128,8 +128,17 @@ arrowscrollbox > .tabbrowser-tab:not([pinned], [fadein]) {
     display: flex !important;
 }
 
-/* hide tab container indicator */
-.tab-context-line{ display:none }
+/* hide container indicators for temporary containers
+ * and style permanent containers to tint their tabs
+ */
+tab.identity-color-toolbar .tab-context-line{ display:none }
+tab:not(.identity-color-toolbar) .tab-context-line {
+    width: 100% !important;
+    height: 100% !important;
+    opacity: 8%;
+    margin: 0 !important;
+    border-radius: var(--tab-border-radius) !important;
+}
 
 /* italicise and dim unloaded tab titles */
 tab[pending] label, tab[pending] .tab-icon-stack {
