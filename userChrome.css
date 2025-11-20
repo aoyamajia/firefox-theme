@@ -4,18 +4,46 @@ aoyamajia https://github.com/aoyamajia/firefox-theme
 */
 
 :root {
+    --toolbox-bgcolor: light-dark(rgb(234, 234, 237), #16161c) !important;
+    --toolbar-bgcolor: light-dark(#f9f9fb, #1c1c22) !important;
+    --toolbox-bgcolor-inactive: var(--toolbar-bgcolor) !important;
     --tab-selected-bgcolor: var(--toolbar-bgcolor) !important;
+    --toolbar-field-background-color: light-dark(rgba(0, 0, 0, 0.05), #28282e) !important;
+    #TabsToolbar {
+        border-bottom: 1px solid #28282e !important;
+    }
+
+    tab:hover .tab-background,
+    tab:not(:only-of-type) .tab-background[selected] {
+        outline: 1px solid #28282e !important;
+        &:-moz-window-inactive {
+/*             background-color: #28282e !important; */
+        }
+    }
 }
 /* theme private windows */
 :root[privatebrowsingmode="temporary"] {
     --urlbar-box-bgcolor: #4f3873 !important;
     --toolbox-bgcolor: #281e3a !important;
-    --toolbox-bgcolor-inactive: #2d213f !important;
-    --toolbar-bgcolor: #3e2f57 !important;
+    --toolbar-bgcolor: #332648 !important;
+    --toolbox-bgcolor-inactive: #332648 !important;
     --toolbar-field-background-color: #281e3a !important;
     --toolbar-field-focus-background-color: #4f3873 !important;
     --urlbarView-highlight-background: var(--toolbox-bgcolor) !important;
     --sidebar-background-color: var(--toolbox-bgcolor) !important;
+    --toolbar-field-background-color: light-dark(rgba(0, 0, 0, 0.05), #3e2f57) !important;
+
+    .tab-background[selected] {
+        outline: 1px solid #3e2f57 !important;
+        &:-moz-window-inactive {
+/*             background-color: #28282e !important; */
+        }
+    }
+
+    /* border between panels */
+    #TabsToolbar {
+        border-bottom: 1px solid #3e2f57 !important;
+    }
 
     /* context menus */
     menupopup,
@@ -74,8 +102,10 @@ tab:not(:hover):only-of-type .tab-background {
 
 /* special case for when only one tab is open along with Firefox View */
 /* Firefox View is the tab[hidden] in this case */
-tabs:has(>arrowscrollbox>tab[hidden]) tab:is([selected],[multiselected]):is(:first-child):is(:nth-last-child(3)) .tab-background {
+tabs:has(>arrowscrollbox>tab[hidden]) tab:is([selected],[multiselected]):is(:first-child):is(:nth-last-child(3)):not(:hover) .tab-background {
     background-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 /* set tabs to take up all available space */
