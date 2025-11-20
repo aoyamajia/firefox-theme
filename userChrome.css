@@ -33,7 +33,8 @@ aoyamajia https://github.com/aoyamajia/firefox-theme
     --sidebar-background-color: var(--toolbox-bgcolor) !important;
     --toolbar-field-background-color: light-dark(rgba(0, 0, 0, 0.05), #3e2f57) !important;
 
-    .tab-background[selected] {
+    tab:hover .tab-background,
+    tab:not(:only-of-type) .tab-background[selected] {
         outline: 1px solid #3e2f57 !important;
         &:-moz-window-inactive {
 /*             background-color: #28282e !important; */
