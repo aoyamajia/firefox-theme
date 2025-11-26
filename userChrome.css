@@ -9,18 +9,9 @@ aoyamajia https://github.com/aoyamajia/firefox-theme
     --toolbox-bgcolor-inactive: var(--toolbar-bgcolor) !important;
     --tab-selected-bgcolor: var(--toolbar-bgcolor) !important;
     --toolbar-field-background-color: light-dark(rgba(0, 0, 0, 0.05), #28282e) !important;
-    #TabsToolbar {
-        border-bottom: 1px solid #28282e !important;
-    }
-
-    tab:hover .tab-background,
-    tab:not(:only-of-type) .tab-background[selected] {
-        outline: 1px solid #28282e !important;
-        &:-moz-window-inactive {
-/*             background-color: #28282e !important; */
-        }
-    }
+    --tab-selected-outline: 1px solid #28282e;
 }
+
 /* theme private windows */
 :root[privatebrowsingmode="temporary"] {
     --urlbar-box-bgcolor: #4f3873 !important;
@@ -32,19 +23,7 @@ aoyamajia https://github.com/aoyamajia/firefox-theme
     --urlbarView-highlight-background: var(--toolbox-bgcolor) !important;
     --sidebar-background-color: var(--toolbox-bgcolor) !important;
     --toolbar-field-background-color: light-dark(rgba(0, 0, 0, 0.05), #3e2f57) !important;
-
-    tab:hover .tab-background,
-    tab:not(:only-of-type) .tab-background[selected] {
-        outline: 1px solid #3e2f57 !important;
-        &:-moz-window-inactive {
-/*             background-color: #28282e !important; */
-        }
-    }
-
-    /* border between panels */
-    #TabsToolbar {
-        border-bottom: 1px solid #3e2f57 !important;
-    }
+    --tab-selected-outline: 1px solid #3e2f57;
 
     /* context menus */
     menupopup,
@@ -80,6 +59,17 @@ aoyamajia https://github.com/aoyamajia/firefox-theme
     background-color: #95525b !important;
 }
 
+/* tab outline when focused or hovered over */
+tab:hover .tab-background,
+tab:not(:only-of-type) .tab-background[selected],
+#pinned-tabs-container>tab .tab-background[selected] {
+    outline: var(--tab-selected-outline) !important;
+}
+
+/* border between panels */
+#TabsToolbar {
+    border-bottom: var(--tab-selected-outline) !important;
+}
 
 /* above css doesn't work when placed after this, */
 /* below css doesn't work without it */
@@ -96,14 +86,14 @@ aoyamajia https://github.com/aoyamajia/firefox-theme
 }
 
 /* set single tabs to be transparent */
-tab:not(:hover):only-of-type .tab-background {
+tab:not(:hover,[pinned]):only-of-type .tab-background {
     background-color: transparent !important;
     box-shadow: none !important;
 }
 
 /* special case for when only one tab is open along with Firefox View */
 /* Firefox View is the tab[hidden] in this case */
-tabs:has(>arrowscrollbox>tab[hidden]) tab:is([selected],[multiselected]):is(:first-child):is(:nth-last-child(3)):not(:hover) .tab-background {
+tabs:has(>arrowscrollbox>tab[hidden]) tab:is([selected],[multiselected]):is(:first-child):is(:nth-last-child(3)):not(:hover,[pinned]) .tab-background {
     background-color: transparent !important;
     outline: none !important;
     box-shadow: none !important;
