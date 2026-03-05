@@ -99,11 +99,12 @@ tabs:has(>arrowscrollbox>tab[hidden]) tab:is([selected],[multiselected]):is(:fir
     box-shadow: none !important;
 }
 
-/* set tabs to take up all available space */
-/* and increase the duration for tab opening animations */
-arrowscrollbox > .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
-    max-width: 100% !important;
-    transition-duration: 100ms, 375ms !important;
+/* make selected tab wider, taking up as much space as possible */
+.tabbrowser-tab {
+    #tabbrowser-tabs[orient="horizontal"] &[fadein]:not([pinned])[selected] {
+        max-width: 100% !important;
+        min-width: calc(var(--tab-min-width)*3) !important;
+    }
 }
 
 /* change focus outline colours */
@@ -119,8 +120,6 @@ arrowscrollbox > .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"])
 }
 
 /* hide close tab button unless tab is selected or hovered over */
-.tabbrowser-tab:only-of-type .tab-close-button,
-.tabbrowser-tab:first-child:has(+ .tabbrowser-tab[hidden]) .tab-close-button,
 .tabbrowser-tab:not(:hover) .tab-close-button {
     visibility: hidden;
 }
@@ -130,35 +129,19 @@ arrowscrollbox > .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"])
     fill: #ffb3bb !important;
 }
 
-/* animate tab closing (shrink and fade out) and fix some animations resulting from wider tabs */
-.tabbrowser-tab:not([pinned], [fadein]) .tab-background {
-    visibility: visible !important;
-}
-
-arrowscrollbox > .tabbrowser-tab:not([pinned], [fadein]) {
-    transition: max-width 120ms ease-out, min-width 120ms ease-out, opacity 100ms ease-out !important;
-    visibility: visible !important;
-    opacity: 0%;
-}
-.tab-content:not([fadein], [pinned]) .tab-icon-pending:not([fadein]),
-.tab-icon-image:not([fadein]),
-.tab-label:not([fadein]) {
-    visibility: visible !important;
-}
-.tab-label:not([fadein]) {
-    display: flex !important;
-}
-
-/* hide container indicators for temporary containers
- * and style permanent containers to tint their tabs
- */
+/* hide container indicators for temporary containers */
 tab.identity-color-toolbar .tab-context-line{ display:none }
+
+/* style permanent containers to tint their tabs */
 tab:not(.identity-color-toolbar) .tab-context-line {
     width: 100% !important;
     height: 100% !important;
     opacity: 8%;
     margin: 0 !important;
     border-radius: var(--tab-border-radius) !important;
+}
+tab[selected]:not(.identity-color-toolbar) .tab-context-line {
+    opacity: 12%;
 }
 
 /* italicise and dim unloaded tab titles */
