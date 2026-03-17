@@ -99,6 +99,11 @@ tabs:has(>arrowscrollbox>tab[hidden]) tab:is([selected],[multiselected]):is(:fir
     box-shadow: none !important;
 }
 
+/* change max tab width */
+#tabbrowser-tabs [orient="horizontal"] {
+    --tab-max-width: calc(var(--tab-min-width)*4);
+}
+
 /* make selected tab wider, taking up as much space as possible */
 .tabbrowser-tab {
     #tabbrowser-tabs[orient="horizontal"] &[fadein]:not([pinned])[selected] {
